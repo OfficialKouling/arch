@@ -34,9 +34,9 @@ mkfs.ext4 $disk3
 mkfs.ext4 $disk4
 #Mount disks
 swapon $disk2
-mount $disk3 /mnt
-mount $disk1 /mnt/boot/efi
-mount $disk4 /mnt/home
+mount ${disk3} /mnt
+mount ${disk1} /mnt/boot/efi
+mount ${disk4} /mnt/home
 #Install system
 pacstrap /mnt base base-devel linux linux-firmware vim git neofetch networkmanager
 #Configure system
