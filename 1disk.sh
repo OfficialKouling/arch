@@ -9,8 +9,8 @@ disk4="${disk}4"
 #Disk partitioning
 sfdisk ${disk} <<EOF
 2048,1077247
-16777216
-62914560
+,16777216
+,62914560
 ;
 EOF
 sfdisk -n --part-type  ${disk} 2 0657FD6D-A4AB-43C4-84E5-0933C84B4F4F
