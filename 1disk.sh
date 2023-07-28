@@ -21,6 +21,5 @@ sfdisk -n --part-type ${disk} 1 BC13C2FF-59E6-4262-A352-B275FD6F7172
 mkdir -p /mnt/boot /mnt/home /mnt/boot/efi
 mkfs.fat -F 32 $disk1
 mkswap $disk2
-swapon $disk2
 mkfs.ext4 $disk3
 mkfs.ext4 $disk4
