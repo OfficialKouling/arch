@@ -18,7 +18,7 @@ EOF
 #sfdisk -n --part-type  ${disk} 4 0FC63DAF-8483-4772-8E79-3D69D8477DE4
 #sfdisk -n --part-type ${disk} 1 BC13C2FF-59E6-4262-A352-B275FD6F7172
 #Create File System
-mkdir -p /mnt/boot /mnt/home /mnt/boot/efi
+mkdir /mnt/boot && mkdir /mnt/home && mkdir /mnt/boot/efi
 mkfs.fat -F 32 $disk1
 mkswap $disk2
 mkfs.ext4 $disk3
