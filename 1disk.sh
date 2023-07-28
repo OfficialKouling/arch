@@ -9,8 +9,8 @@ disk4="${disk}4"
 #Disk partitioning
 sfdisk ${disk} <<EOF
 2048,1077247
-1077248,17854463
-17854464,80769023
+16777216
+62914560
 ;
 EOF
 sfdisk -n --change-id  ${disk} 2 82
