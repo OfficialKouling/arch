@@ -1,11 +1,57 @@
 #!/bin/bash
-sfdisk /dev/sda <<EOF
-2048,1048576
-,83886080
+fdisk -l | awk '/dev/ {print}'
+echo "Write a disk name (ex. /dev/sda)"
+read disk
+echo "Write a PC name (ex. server)"
+read pc_name
+echo "Write a root password (ex. 1234)"
+read root_password
+echo "Write a username (ex. giovanni_giorgio)"
+read username
+echo "Write a password for username (ex. qwerty)"
+read username_password
+disk1="${disk}1"
+disk2="${disk}2"
+disk3="${disk}3"
+disk4="${disk}4"
+#Disk partitioning
+sfdisk ${disk} <<EOF
+2048,1077247
+,1077248,17854463
+,17854464,80769023
 ;
 EOF
-mkdir -p /mnt/boot /mnt/home /mnt/boot/efi && sfdisk --change-id /dev/sda 1 EF
-mkfs.fat -F 32 /dev/sda1
-mkfs.ext4 /dev/sda2
-mkfs.ext4 /dev/sda3
-mount /dev/sda1 /mnt/boot && mount /dev/sda2 /mnt && mount /dev/sda3 /mnt/home
+#Create File System
+mkdir -p /mnt/boot /mnt/home /mnt/boot/efi && sfdisk --change-id $disk 1 EF
+mkfs.fat -F 32 $disk1
+mkswap $disk2
+swapon $disk2
+mkfs.ext4 $disk3
+mkfs.ext4 $disk4
+#Mount disks
+mount $disk3 /mnt
+mount $disk1 /mnt/boot/efi
+mount $disk4 /mnt/home
+#Install system
+pacstrap /mnt base base-devel linux linux-firmware vim git neofetch networkmanager
+#Configure system
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt &&
+    ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime &&
+    hwclock --systohc &&
+    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen &&
+    locale-gen &&
+    echo "LANG=en_US.UTF-8" > /etc/locale.conf &&
+    echo "${pc_name}" > /etc/hostname &&
+    echo "127.0.0.1	localhost" > /etc/hosts &&
+    echo "::1	       localhost" >> /etc/hosts &&
+    echo "127.0.0.1	${pc_name}.localdomain	${pc_name}" &&
+    systemctl enable NetworkManager &&
+    chpasswd <<<"root:${root_password}" &&
+    useradd ${username} &&
+    chpasswd <<<"${username}:${username_password}" &&
+    pacman -S grub efibootmgr &&
+    grub-install --target=x86_64-efi --efi-directory=/boot/efi &&
+    grub-mkconfig -o /boot/grub/grub.cfg &&
+    mkdir /boot/efi/EFI/boot &&
+    cp /boot/efi/EFI/arch/grubx64.efi /boot/efi/EFI/boot/bootx64.efi
