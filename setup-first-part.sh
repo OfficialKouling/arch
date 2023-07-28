@@ -35,5 +35,5 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt <<"EOT"
 git clone https://github.com/OfficialKouling/arch
 cd arch
-sh setup-config.sh
+sh setup-second-part.sh
 EOT
