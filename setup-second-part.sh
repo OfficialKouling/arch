@@ -22,7 +22,9 @@ systemctl enable NetworkManager
 chpasswd <<<"root:${root_password}"
 useradd ${username}
 chpasswd <<<"${username}:${username_password}"
-usermod -aG wheel kouling
+usermod -aG wheel ${username}
+mkdir /home/${username}
+chown ${username}:${username} /home/${username}
 pacman -Sy grub efibootmgr sudo --noconfirm
 echo "%sudo	ALL=(ALL:ALL) ALL" >> /etc/sudoers
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
