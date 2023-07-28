@@ -22,7 +22,10 @@ systemctl enable NetworkManager
 chpasswd <<<"root:${root_password}"
 useradd ${username}
 chpasswd <<<"${username}:${username_password}"
-pacman -S grub efibootmgr --noconfirm
+usermod -aG wheel kouling
+pacman -Sy grub efibootmgr sudo --noconfirm
+echo "%sudo	ALL=(ALL:ALL) ALL" >> /etc/sudoers
+echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
 grub-install --target=x86_64-efi --efi-directory=/boot/efi
 grub-mkconfig -o /boot/grub/grub.cfg
 mkdir /boot/efi/EFI/boot
