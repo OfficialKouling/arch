@@ -36,8 +36,8 @@ mount $disk4 /mnt/home
 pacstrap /mnt base base-devel linux linux-firmware vim git neofetch networkmanager
 #Configure system
 genfstab -U /mnt >> /mnt/etc/fstab
-arch-chroot /mnt &&
-    ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime &&
+arch-chroot /mnt
+ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime &&
     hwclock --systohc &&
     echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen &&
     locale-gen &&
