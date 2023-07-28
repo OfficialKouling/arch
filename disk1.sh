@@ -55,7 +55,7 @@ systemctl enable NetworkManager
 chpasswd <<<"root:${root_password}"
 useradd ${username}
 chpasswd <<<"${username}:${username_password}"
-pacman -S grub efibootmgr
+pacman -S grub efibootmgr --noconfirm
 grub-install --target=x86_64-efi --efi-directory=/boot/efi
 grub-mkconfig -o /boot/grub/grub.cfg
 mkdir /boot/efi/EFI/boot
