@@ -21,6 +21,9 @@ sfdisk ${disk} <<EOF
 ,17854464,80769023
 ;
 EOF
+sfdisk -n --change-id  ${disk} 2 82
+sfdisk -n --change-id  ${disk} 3 83
+sfdisk -n --change-id  ${disk} 4 83
 #Create File System
 mkdir -p /mnt/boot /mnt/home /mnt/boot/efi && sfdisk --change-id $disk 1 EF
 mkfs.fat -F 32 $disk1
