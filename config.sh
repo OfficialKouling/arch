@@ -10,6 +10,7 @@ sed 's/xclock/#xclock/' /etc/X11/xinit/xinitrc >> /etc/X11/xinit/xinitrc
 sed 's/exec/#exec/' /etc/X11/xinit/xinitrc >> /etc/X11/xinit/xinitrc
 sed 's/xterm/#xterm/'  /etc/X11/xinit/xinitrc >> /etc/X11/xinit/xinitrc
 echo "exec dwm" >> /etc/X11/xinit/xinitrc
+exit
 EOF
 sudo systemctl enable lightdm
 sudo cp -r ./cache/script.sh ~/.
