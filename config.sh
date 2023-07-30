@@ -1,8 +1,8 @@
 sudo pacman -Syu --noconfirm
 sudo tar -xf ./cache/dwm-flexipatch.tar
 sudo mv ./dwm-flexipatch ~/
-sudo pacman -Sy xorg lightdm xorg-server-xephyr lightdm-slick-greeter base-devel libx11 libxft libxinerama freetype2 fontconfig --noconfirm
-sudo make install clear ~/dwm-flexipatch
+sudo pacman -Sy xorg lightdm xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
+cd ~/dwm-flexipatch && sudo make install clear
 sudo systemctl enable lightdm
 sudo cp -r ./cache/script.sh ~/.
 sudo cp -r ./cache/.xprofile ~/.
