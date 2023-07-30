@@ -35,3 +35,4 @@ mkdir /boot/efi/EFI/boot
 cp /boot/efi/EFI/arch/grubx64.efi /boot/efi/EFI/boot/bootx64.efi
 mv /arch /home/${username}
 chown ${username}:${username} -R /home/${username}/arch
+reboot
