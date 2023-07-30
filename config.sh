@@ -5,10 +5,10 @@ sudo pacman -Sy xorg lightdm kitty firefox xorg-server-xephyr lightdm-slick-gree
 cd ~/dwm-flexipatch && sudo make install
 cd ~/arch/
 sudo su << "EOT"
-sed 's/twm/#twm/' /etc/X11/xinit/xinitrc >> /etc/X11/xinit/xinitrc
-sed 's/xclock/#xclock/' /etc/X11/xinit/xinitrc >> /etc/X11/xinit/xinitrc
-sed 's/exec/#exec/' /etc/X11/xinit/xinitrc >> /etc/X11/xinit/xinitrc
-sed 's/xterm/#xterm/'  /etc/X11/xinit/xinitrc >> /etc/X11/xinit/xinitrc
+sed 's/twm/#twm/' /etc/X11/xinit/xinitrc > /etc/X11/xinit/xinitrc
+sed 's/xclock/#xclock/' /etc/X11/xinit/xinitrc > /etc/X11/xinit/xinitrc
+sed 's/exec/#exec/' /etc/X11/xinit/xinitrc > /etc/X11/xinit/xinitrc
+sed 's/xterm/#xterm/'  /etc/X11/xinit/xinitrc > /etc/X11/xinit/xinitrc
 echo "exec dwm" >> /etc/X11/xinit/xinitrc
 exit
 EOT
