@@ -1,7 +1,7 @@
 sudo pacman -Syu --noconfirm
 sudo tar -xf ./cache/dwm-flexipatch.tar
 sudo mv ./dwm-flexipatch ~/
-sudo pacman -Sy xorg lightdm kitty accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
+sudo pacman -Sy xorg lightdm kitty dmenu accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
 sudo systemctl enable systemd-homed
 cd ~/dwm-flexipatch && sudo make install
 cd ~/arch/
