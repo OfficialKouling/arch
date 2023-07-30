@@ -5,6 +5,7 @@ sudo rm -Rf /etc/lightdm
 sudo mv ./cache/lightdm /etc/lightdm
 sudo pacman -Sy xorg lightdm kitty dmenu lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
 sudo systemctl enable systemd-homed
+sudo chown root:root -R /etc/lightdm
 cd ~/dwm-flexipatch && sudo make install
 cd ~/arch/
 sudo su << "EOT"
