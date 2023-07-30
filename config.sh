@@ -1,8 +1,14 @@
 sudo pacman -Syu --noconfirm
 sudo tar -xf ./cache/dwm-flexipatch.tar
 sudo mv ./dwm-flexipatch ~/
-sudo pacman -Sy xorg lightdm xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
+sudo pacman -Sy xorg lightdm kitty firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
 cd ~/dwm-flexipatch && sudo make install clear
+cd
+sudo sed 's/twm/#twm/' /etc/X11/xinit/xinitrc
+sudo sed 's/xclock/#xclock/' /etc/X11/xinit/xinitrc
+sudo sed 's/exec/#exec/' /etc/X11/xinit/xinitrc
+sudo sed 's/xterm/#xterm/' /etc/X11/xinit/xinitrc
+sudo echo "exec dwm" >> /etc/X11/xinit/xinitrc
 sudo systemctl enable lightdm
 sudo cp -r ./cache/script.sh ~/.
 sudo cp -r ./cache/.xprofile ~/.
