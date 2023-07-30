@@ -33,3 +33,5 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi
 grub-mkconfig -o /boot/grub/grub.cfg
 mkdir /boot/efi/EFI/boot
 cp /boot/efi/EFI/arch/grubx64.efi /boot/efi/EFI/boot/bootx64.efi
+mv /arch /home/${username}
+chown ${username}:${username} -R /home/${username}/arch
