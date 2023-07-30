@@ -1,0 +1,3 @@
+#!/bin/zsh
+sh /home/kouling/script.sh
+DISPLAY=:0 feh --bg-max --randomize /home/kouling/wallpaper/set.jpg

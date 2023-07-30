@@ -1,0 +1,14 @@
+sudo pacman -Syu --noconfirm
+sudo pacman -Sy lightdm xorg-server-xephyr lightdm-slick-greeter --noconfirm
+sudo systemctl enable lightdm
+sudo cp -r ./cache/script.sh ~/.
+sudo cp -r ./cache/.xprofile ~/.
+sudo rm -rf /etc/lightdm/lightdm.conf
+sudo cp -r ./cache/lightdm.conf /etc/lightdm/lightdm.conf
+sudo mkdir ~/wallpapers
+sudo cp -r ./cache/set.jpg ~/wallpapers/set.jpg
+sudo cp -r ./cache/slick-greeter.conf /etc/lightdm/slick-greeter.conf
+sudo cp -r ./cache/background.jpg /usr/share/background.jpg
+sudo mkdir /usr/share/xsessions
+sudo cp -r ./cache/dwm.desktop /usr/share/xsessions/dwm.desktop
+sudo chown 644 /usr/share/xsessions/dwm.desktop
