@@ -1,5 +1,5 @@
 sudo pacman -Syu --noconfirm
-sudo pacman -Sy lightdm xorg-server-xephyr lightdm-slick-greeter --noconfirm
+sudo pacman -Sy xorg lightdm xorg-server-xephyr lightdm-slick-greeter --noconfirm
 sudo systemctl enable lightdm
 sudo cp -r ./cache/script.sh ~/.
 sudo cp -r ./cache/.xprofile ~/.
