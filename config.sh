@@ -4,4 +4,4 @@ sed 's/#greeter-session=lightdm-slick-greeter/greeter-session=lightdm-slick-gree
 rm -Rf /etc/lightdm/lightdm.conf
 mv /etc/lightdm/lightdm1.conf /etc/lightdm/lightdm.conf
 EOT
-sudo pacman -Sy rofi --noconfirm
+sudo pacman -Sy rofi light sxkhd --noconfirm
