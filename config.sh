@@ -1,5 +1,6 @@
 sudo pacman -Syu --noconfirm
-sudo tar -xf ./cache/dwm-flexipatch.tar ~/dwm-flexipatch
+sudo tar -xf ./cache/dwm-flexipatch.tar
+sudo mv -r ./dwm-flexipatch ~/
 sudo pacman -Sy xorg lightdm xorg-server-xephyr lightdm-slick-greeter --noconfirm
 sudo make install clear ~/dwm-flexipatch
 sudo systemctl enable lightdm
