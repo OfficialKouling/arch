@@ -5,11 +5,14 @@ sudo pacman -Sy xorg lightdm kitty firefox xorg-server-xephyr lightdm-slick-gree
 cd ~/dwm-flexipatch && sudo make install
 cd ~/arch/
 sudo su << "EOT"
-sudo sed 's/twm/#twm/' /etc/X11/xinit/xinitrc > /etc/X11/xinit/xinitrc
-sudo sed 's/xclock/#xclock/' /etc/X11/xinit/xinitrc > /etc/X11/xinit/xinitrc
-sudo sed 's/exec/#exec/' /etc/X11/xinit/xinitrc > /etc/X11/xinit/xinitrc
-sudo sed 's/xterm/#xterm/'  /etc/X11/xinit/xinitrc > /etc/X11/xinit/xinitrc
-echo "exec dwm" >> /etc/X11/xinit/xinitrc
+sed 's/twm/#twm/' /etc/X11/xinit/xinitrc > /etc/X11/xinit/a1xinitrc1
+sed 's/xclock/#xclock/' /etc/X11/xinit/a1xinitrc1 > /etc/X11/xinit/a1xinitrc2
+sed 's/exec/#exec/' /etc/X11/xinit/a1xinitrc2 > /etc/X11/xinit/a1xinitrc3
+sed 's/xterm/#xterm/'  /etc/X11/xinit/a1xinitrc3 > /etc/X11/xinit/a1xinitrc4
+echo "exec dwm" >> /etc/X11/xinit/a1xinitrc4
+sudo rm -rf /etc/X11/xinit/xinitrc
+sudo cp -r /etc/X11/xinit/a1xinitrc4 /etc/X11/xinit/xinitrc
+sudo rm -rf /etc/X11/xinit/a1xinitrc*
 exit
 EOT
 sudo systemctl enable lightdm
