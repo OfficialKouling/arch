@@ -1,7 +1,6 @@
 sudo pacman -Syu --noconfirm
 sudo tar -xf ./cache/dwm-flexipatch.tar
 sudo tar -xf ./cache/warpd.tar
-sudo mkdir ~/.shit_from_git
 sudo mv ./dwm-flexipatch ~/
 sudo mv ./warpd ~/.shit_from_git/
 sudo rm -Rf /etc/lightdm
