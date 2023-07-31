@@ -1,12 +1,16 @@
 sudo pacman -Syu --noconfirm
 sudo tar -xf ./cache/dwm-flexipatch.tar
+sudo tar -xf ./cache/warpd.tar
+sudo mkdir ~/.shit_from_git
 sudo mv ./dwm-flexipatch ~/
+sudo mv ./warpd ~/.shit_from_git/
 sudo rm -Rf /etc/lightdm
 sudo mv ./cache/lightdm /etc/lightdm
 sudo pacman -Sy xorg flameshot light sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
 sudo systemctl enable systemd-homed
 sudo chown root:root -R /etc/lightdm
 cd ~/dwm-flexipatch && sudo make install
+cd ~/.shit_from_git/warpd && sudo make install
 cd ~/arch/
 sudo su << "EOT"
 sed 's/twm/#twm/' /etc/X11/xinit/xinitrc > /etc/X11/xinit/a1xinitrc1
