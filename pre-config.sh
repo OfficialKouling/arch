@@ -11,7 +11,7 @@ sudo mv ./dwm-flexipatch ~/
 sudo mv ./warpd ~/.shit_from_git/
 sudo rm -Rf /etc/lightdm
 sudo mv ./cache/lightdm /etc/lightdm
-sudo pacman -Sy xorg flameshot light sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
+sudo pacman -Sy feh xorg flameshot light sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
 sudo mkdir ~/.config/rofi
 sudo cp -r ./cache/themes /usr/share/rofi/
 sudo echo '@theme "/home/kouling/.local/share/rofi/themes/spotlight-dark.rasi" ' > ~/.config/rofi/config.rasi
