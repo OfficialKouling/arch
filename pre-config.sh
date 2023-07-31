@@ -9,6 +9,10 @@ sudo tar -xf ./cache/dwm-flexipatch.tar
 sudo tar -xf ./cache/warpd.tar
 sudo tar -xf ./cache/picom.tar
 sudo tar -xf ./cache/zsh-syntax-highlighting.tar
+sudo tar -xf ./cache/.oh-my-zsh.tar
+sudo tar -xf ./cache/powerlevel10k.tar
+sudo mv ./powerlevel10k ~/
+sudo mv ./.oh-my-zsh ~/
 sudo mv ./zsh-syntax-highlighting ~/.shit_from_git
 sudo mv ./dwm-flexipatch ~/
 sudo mv ./picom ~/.shit_from_git/
