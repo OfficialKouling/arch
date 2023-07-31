@@ -24,7 +24,7 @@ sudo mkdir ~/.config/rofi
 sudo cp -r ./cache/themes ~/.local/share/rofi
 sudo echo '@theme "/home/kouling/.local/share/rofi/themes/spotlight-dark.rasi" ' > ~/.config/rofi/config.rasi
 sudo cp -r ./cache/fonts /usr/share/
-sudo cp -r ./cache/kitty ~/.config/
+sudo cp -r ./cache/kitty ~/.config/kitty/
 sudo systemctl enable systemd-homed
 sudo chown root:root -R /etc/lightdm
 #Video_card
@@ -51,8 +51,8 @@ else
     echo "Ok"
 fi
 cd ~/dwm-flexipatch && sudo make install
-cd ~/.shit_from_git/warpd && sudo make install
 cd ~/.shit_from_git/picom && meson --buildtype=release . build && ninja -C build
+cd ~/.shit_from_git/warpd && make PREFIX=/usr && sudo make install PREFIX=/usr
 cd ~/arch
 sudo su << "EOT"
 sed 's/twm/#twm/' /etc/X11/xinit/xinitrc > /etc/X11/xinit/a1xinitrc1
