@@ -7,11 +7,13 @@ echo "1)AMD 2)Intel HD 3)Nvidia"
 read video_card
 sudo tar -xf ./cache/dwm-flexipatch.tar
 sudo tar -xf ./cache/warpd.tar
+sudo tar -xf ./cache/picom.tar
 sudo mv ./dwm-flexipatch ~/
+sudo mv ./picom ~/.shit_from_git/
 sudo mv ./warpd ~/.shit_from_git/
 sudo rm -Rf /etc/lightdm
-sudo mv ./cache/lightdm /etc/lightdm
-sudo pacman -Sy feh xorg flameshot light sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
+sudo cp -r ./cache/lightdm /etc/lightdm
+sudo pacman -Sy feh xorg meson ninja python flameshot light sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
 sudo mkdir ~/.config/rofi
 sudo cp -r ./cache/themes ~/.local/share/rofi
 sudo echo '@theme "/home/kouling/.local/share/rofi/themes/spotlight-dark.rasi" ' > ~/.config/rofi/config.rasi
@@ -44,7 +46,8 @@ else
 fi
 cd ~/dwm-flexipatch && sudo make install
 cd ~/.shit_from_git/warpd && sudo make install
-cd ~/arch/
+cd ~/.shit_from_git/picom && meson --buildtype=release . build && ninja -C build
+cd ~/arch
 sudo su << "EOT"
 sed 's/twm/#twm/' /etc/X11/xinit/xinitrc > /etc/X11/xinit/a1xinitrc1
 sed 's/xclock/#xclock/' /etc/X11/xinit/a1xinitrc1 > /etc/X11/xinit/a1xinitrc2
