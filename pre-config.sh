@@ -8,6 +8,8 @@ read video_card
 sudo tar -xf ./cache/dwm-flexipatch.tar
 sudo tar -xf ./cache/warpd.tar
 sudo tar -xf ./cache/picom.tar
+sudo tar -xf ./cache/zsh-syntax-highlighting.tar
+sudo mv ./zsh-syntax-highlighting ~/.shit_from_git
 sudo mv ./dwm-flexipatch ~/
 sudo mv ./picom ~/.shit_from_git/
 sudo mv ./warpd ~/.shit_from_git/
