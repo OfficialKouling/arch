@@ -3,7 +3,7 @@ sudo tar -xf ./cache/dwm-flexipatch.tar
 sudo mv ./dwm-flexipatch ~/
 sudo rm -Rf /etc/lightdm
 sudo mv ./cache/lightdm /etc/lightdm
-sudo pacman -Sy xorg light sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
+sudo pacman -Sy xorg flameshot light sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
 sudo systemctl enable systemd-homed
 sudo chown root:root -R /etc/lightdm
 cd ~/dwm-flexipatch && sudo make install
@@ -30,3 +30,5 @@ sudo mkdir /usr/share/xsessions
 sudo cp -r ./cache/dwm.desktop /usr/share/xsessions/dwm.desktop
 sudo chown 644 /usr/share/xsessions/dwm.desktop
 sudo cp -r ./cache/sxhkd.service /etc/systemd/system/sxhkd.service
+sudo systemctl enable sxhkd.service
+cp -r ./cache/sxhkd ~/.config/
