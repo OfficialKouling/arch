@@ -13,7 +13,7 @@ sudo rm -Rf /etc/lightdm
 sudo mv ./cache/lightdm /etc/lightdm
 sudo pacman -Sy feh xorg flameshot light sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
 sudo mkdir ~/.config/rofi
-sudo cp -r ./cache/themes /usr/share/rofi/
+sudo cp -r ./cache/themes ~/.local/share/rofi
 sudo echo '@theme "/home/kouling/.local/share/rofi/themes/spotlight-dark.rasi" ' > ~/.config/rofi/config.rasi
 sudo cp -r ./cache/fonts /usr/share/
 sudo cp -r ./cache/kitty ~/.config/
@@ -68,4 +68,4 @@ sudo cp -r ./cache/dwm.desktop /usr/share/xsessions/dwm.desktop
 sudo chown 644 /usr/share/xsessions/dwm.desktop
 sudo cp -r ./cache/sxhkd.service /etc/systemd/system/sxhkd.service
 sudo systemctl enable sxhkd.service
-cp -r ./cache/sxhkd ~/.config/
+sudo cp -r ./cache/sxhkd ~/.config/
