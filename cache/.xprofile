@@ -1,3 +1,3 @@
 #!/bin/bash
 sh /home/kouling/script.sh
-DISPLAY=:0 feh --bg-max --randomize /home/kouling/wallpaper/set.jpg
+DISPLAY=:0 feh --bg-max --randomize /home/kouling/wallpapers/set.jpg
