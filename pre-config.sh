@@ -21,12 +21,12 @@ sudo mv ./picom ~/.shit_from_git/
 sudo mv ./warpd ~/.shit_from_git/
 sudo rm -Rf /etc/lightdm
 sudo cp -r ./cache/lightdm /etc/lightdm
-sudo pacman -Sy libx11 libxinerama fontconfig libxft ttf-font-awesome python-pywal lsd bat thefuck cmake libev uthash libconfig feh xorg meson ninja --noconfirm
+sudo pacman -Sy libx11 pulseaudio libxinerama fontconfig libxft ttf-font-awesome python-pywal lsd bat thefuck cmake libev uthash libconfig feh xorg meson ninja --noconfirm
 sudo pacman -Sy python flameshot light sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
 sudo mkdir ~/.config/rofi
 sudo cp -r ./cache/themes ~/.local/share/rofi
 sudo cp -r ./cache/fonts /usr/share/
-sudo cp -r ./cache/kitty ~/.config/
+sudo cp -r ./cache/kitty ~/.config/kitty/
 sudo systemctl enable systemd-homed
 sudo chown root:root -R /etc/lightdm
 #Video_card
