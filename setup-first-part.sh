@@ -1,4 +1,7 @@
 #!/bin/bash
+echo "Do you BIOS or UEFI?"
+echo "1)Bios    2)UEFI"
+read boot
 fdisk -l | awk '/dev/ {print}'
 echo "Write a disk name (ex. /dev/sda)"
 read disk
@@ -25,7 +28,13 @@ mkfs.ext4 $disk4 &&
 #Mount disks
 swapon $disk2
 mount --mkdir ${disk3} /mnt
-mount --mkdir ${disk1} /mnt/boot/efi
+if [ $boot == 1 ]; then
+    mount --mkdir ${disk1} /mnt/boot
+elif [ $boot == 2 ]; then
+    mount --mkdir ${disk1} /mnt/boot/efi
+else
+    mount --mkdir ${disk1} /mnt/boot/efi
+fi
 mount --mkdir ${disk4} /mnt/home
 #Install system
 pacstrap /mnt base base-devel linux linux-firmware vim git neofetch networkmanager
@@ -33,6 +42,7 @@ pacstrap /mnt base base-devel linux linux-firmware vim git neofetch networkmanag
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt <<"EOT"
 git clone https://github.com/OfficialKouling/arch
+echo ${disk2}
 cd arch
 EOT
 arch-chroot /mnt
