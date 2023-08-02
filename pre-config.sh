@@ -12,7 +12,7 @@ sudo tar -xf ./cache/zsh-syntax-highlighting.tar
 sudo tar -xf ./cache/.oh-my-zsh.tar
 sudo tar -xf ./cache/powerlevel10k.tar
 sudo tar -xf ./cache/dwmbar.tar
-sudo mv ./dwmbar.tar ~/.shit_from_git
+sudo mv ./dwmbar ~/.shit_from_git
 sudo mv ./powerlevel10k ~/
 sudo mv ./.oh-my-zsh ~/
 sudo mv ./zsh-syntax-highlighting ~/.shit_from_git
