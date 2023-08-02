@@ -1,5 +1,8 @@
 #!/bin/bash
 #Variables
+echo "Do you BIOS or UEFI?"
+echo "1)Bios    2)UEFI"
+read boot
 echo "Write a PC name (ex. server)"
 read pc_name
 echo "Write a root password (ex. 1234)"
@@ -29,10 +32,16 @@ git clone https://github.com/OfficialKouling/arch /home/${username}/.shit_from_g
 pacman -Sy grub efibootmgr sudo --noconfirm
 echo "%sudo	ALL=(ALL:ALL) ALL" >> /etc/sudoers
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
-grub-install --target=x86_64-efi --efi-directory=/boot/efi
-grub-mkconfig -o /boot/grub/grub.cfg
-mkdir /boot/efi/EFI/boot
-cp /boot/efi/EFI/arch/grubx64.efi /boot/efi/EFI/boot/bootx64.efi
+if [ $boot == 1 ]; then
+    grub-install --target=i386-pc /dev/sda1
+elif [ $boot == 2 ]; then
+    grub-install --target=x86_64-efi --efi-directory=/boot/efi
+    grub-mkconfig -o /boot/grub/grub.cfg
+    mkdir /boot/efi/EFI/boot
+    cp /boot/efi/EFI/arch/grubx64.efi /boot/efi/EFI/boot/bootx64.efi
+else
+    echo "errr3r1oro1r46@!3ororor21415o12ro1213rorrrr"
+fi
 mv /arch /home/${username}
 chown ${username}:${username} -R /home/${username}/arch
 reboot
