@@ -9,7 +9,6 @@ username=$(ls /home | awk '/^[^lost+found]/ { print $1 }')
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-wal -i ~/wallpapers/set.jpg > /dev/null
 export ZSH="$HOME/.oh-my-zsh"
 
 printf '\n%.0s' {1..100}
