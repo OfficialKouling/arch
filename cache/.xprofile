@@ -1,4 +1,6 @@
 #!/bin/bash
-sh /home/kouling/script.sh
-DISPLAY=:0 feh --bg-max --randomize /home/kouling/wallpapers/set.jpg
-dwmbar
+username=$(ls /home | awk '/^[^lost+found]/ { print $1 }')
+sh /home/${username}/script.sh
+DISPLAY=:0 feh --bg-max --randomize /home/${username}/wallpapers/set.jpg
+dwmbar &
+sxhkd &

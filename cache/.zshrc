@@ -4,7 +4,7 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
+username=$(ls /home | awk '/^[^lost+found]/ { print $1 }')
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -131,4 +131,4 @@ alias l="lsd -al"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval $(thefuck --alias)
-source /home/kouling/.shit_from_git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/${username}/.shit_from_git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
