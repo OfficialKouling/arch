@@ -26,7 +26,7 @@ sudo pacman -Sy python flameshot light sxhkd lightdm kitty rofi lightdm-gtk-gree
 sudo mkdir ~/.config/rofi
 sudo cp -r ./cache/themes ~/.local/share/rofi
 sudo cp -r ./cache/fonts /usr/share/
-sudo cp -r ./cache/kitty ~/.config/kitty/
+sudo cp -r ./cache/kitty ~/.config/
 sudo systemctl enable systemd-homed
 sudo chown root:root -R /etc/lightdm
 #Video_card
