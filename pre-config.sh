@@ -11,6 +11,8 @@ sudo tar -xf ./cache/picom.tar
 sudo tar -xf ./cache/zsh-syntax-highlighting.tar
 sudo tar -xf ./cache/.oh-my-zsh.tar
 sudo tar -xf ./cache/powerlevel10k.tar
+sudo tar -xf ./cache/dwmbar.tar
+sudo mv ./dwmbar.tar ~/.shit_from_git
 sudo mv ./powerlevel10k ~/
 sudo mv ./.oh-my-zsh ~/
 sudo mv ./zsh-syntax-highlighting ~/.shit_from_git
@@ -19,7 +21,7 @@ sudo mv ./picom ~/.shit_from_git/
 sudo mv ./warpd ~/.shit_from_git/
 sudo rm -Rf /etc/lightdm
 sudo cp -r ./cache/lightdm /etc/lightdm
-sudo pacman -Sy libx11 python-pywal lsd bat thefuck cmake libev uthash libconfig feh xorg meson ninja python flameshot light sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
+sudo pacman -Sy libx11 ttf-font-awesome python-pywal lsd bat thefuck cmake libev uthash libconfig feh xorg meson ninja python flameshot light sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
 sudo mkdir ~/.config/rofi
 sudo cp -r ./cache/themes ~/.local/share/rofi
 sudo echo '@theme "/home/kouling/.local/share/rofi/themes/spotlight-dark.rasi" ' > ~/.config/rofi/config.rasi
@@ -50,6 +52,7 @@ elif [ $touchpad == 2 ]; then
 else
     echo "Ok"
 fi
+cd ~/.shit_from_git/dwmbar && sudo ./install.sh
 cd ~/dwm-flexipatch && sudo make install
 cd ~/.shit_from_git/picom && meson --buildtype=release . build && ninja -C build
 cd ~/.shit_from_git/warpd && make PREFIX=/usr && sudo make install PREFIX=/usr
