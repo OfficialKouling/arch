@@ -1,11 +1,20 @@
 sudo pacman -Syu --noconfirm
+echo "Select your style"
+echo "1)Blue 2)Orange"
+read theme
 echo "Do you have a touchpad?"
 echo "1)Yes 2)No"
 read touchpad
 echo "Which is your videocard?"
 echo "1)AMD 2)Intel HD 3)Nvidia"
 read video_card
-sudo tar -xf ./cache/dwm-flexipatch.tar
+if [ $theme == 2 ]; then
+    sudo tar -xf ./cache/dwm-flexipatch.tar
+elif [ $theme == 1 ]; then
+    sudo tar -xf ./cache/dwm-flexipatch1.tar
+else
+    sudo tar -xf ./cache/dwm-flexipatch1.tar
+fi
 sudo tar -xf ./cache/warpd.tar
 sudo tar -xf ./cache/picom.tar
 sudo tar -xf ./cache/zsh-syntax-highlighting.tar
@@ -72,7 +81,13 @@ sudo systemctl enable lightdm
 sudo cp -r ./cache/script.sh ~/.
 sudo cp -r ./cache/.xprofile ~/.
 sudo mkdir ~/wallpapers
-sudo cp -r ./cache/set.jpg ~/wallpapers/set.jpg
+if [ $theme == 2 ]; then
+    sudo cp -r ./cache/set.jpg ~/wallpapers/set.jpg
+elif [ $theme == 1 ]; then
+    sudo cp -r ./cache/set1.jpg ~/wallpapers/set.jpg
+else
+    sudo cp -r ./cache/set1.jpg ~/wallpapers/set.jpg
+fi
 sudo cp -r ./cache/slick-greeter.conf /etc/lightdm/slick-greeter.conf
 sudo cp -r ./cache/background.jpg /usr/share/background.jpg
 sudo mkdir /usr/share/xsessions
