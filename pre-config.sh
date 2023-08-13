@@ -32,6 +32,8 @@ sudo rm -Rf /etc/lightdm
 sudo cp -r ./cache/lightdm /etc/lightdm
 sudo pacman -Sy libx11 pulseaudio libxinerama fontconfig libxft ttf-font-awesome python-pywal lsd bat thefuck cmake libev uthash libconfig feh xorg meson ninja --noconfirm
 sudo pacman -Sy python flameshot light sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
+sudo mkdir ~/.config/
+sudo mkdir ~/.config/kitty
 sudo mkdir ~/.config/rofi
 sudo cp -r ./cache/themes ~/.local/share/rofi
 sudo cp -r ./cache/fonts /usr/share/
