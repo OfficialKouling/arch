@@ -17,12 +17,16 @@ elif [ $theme == 3 ]; then
 else
     sudo tar -xf ./cache/dwm-flexipatch1.tar
 fi
+sudo tar -xf ./cache/.vim_runtime.tar
+sudo tar -xf ./cache/.zsh-vi-mode.tar
 sudo tar -xf ./cache/warpd.tar
 sudo tar -xf ./cache/picom.tar
 sudo tar -xf ./cache/zsh-syntax-highlighting.tar
 sudo tar -xf ./cache/.oh-my-zsh.tar
 sudo tar -xf ./cache/powerlevel10k.tar
 sudo tar -xf ./cache/dwmbar.tar
+sudo mv ./.zsh-vi-mode ~/
+sudo mv ./.vim_runtime ~/.shit_from_git/
 sudo mv ./dwmbar ~/.shit_from_git/
 sudo mv ./powerlevel10k ~/
 sudo mv ./.oh-my-zsh ~/
@@ -42,8 +46,6 @@ sudo cp -r ./cache/fonts /usr/share/
 sudo cp -r ./cache/kitty ~/.config/kitty/
 sudo cp ./cache/molokai.vim /usr/share/vim/vim90/colors/
 sudo cp ./cache/.vimrc ~/
-sudo cp -r ./cache/.vim_runtime ~/
-sudo cp -r ./cache/.zsh-vi-mode/ ~/.shit_from_git/
 sudo systemctl enable systemd-homed
 sudo chown root:root -R /etc/lightdm
 #Video_card
