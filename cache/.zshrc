@@ -131,3 +131,4 @@ alias l="lsd -al"
 
 eval $(thefuck --alias)
 source /home/${username}/.shit_from_git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/${username}/.shit_from_git/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
