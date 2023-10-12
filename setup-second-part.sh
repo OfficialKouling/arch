@@ -33,7 +33,7 @@ pacman -Sy grub efibootmgr sudo --noconfirm
 echo "%sudo	ALL=(ALL:ALL) ALL" >> /etc/sudoers
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
 if [ $boot == 1 ]; then
-    grub-install --target=i386-pc /dev/sda
+    grub-install --target=i386-pc /dev/sda1
 elif [ $boot == 2 ]; then
     grub-install --target=x86_64-efi --efi-directory=/boot/efi
     grub-mkconfig -o /boot/grub/grub.cfg

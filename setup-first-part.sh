@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Do you have BIOS or UEFI?"
+echo "Do you BIOS or UEFI?"
 echo "1)Bios    2)UEFI"
 read boot
 fdisk -l | awk '/dev/ {print}'
