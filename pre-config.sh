@@ -37,48 +37,48 @@ sudo tar -xf ./cache/powerlevel10k.tar
 sudo tar -xf ./cache/dwmbar.tar
 sudo mv ./.vim_runtime ~/
 if ! [[ -d ~/.shit_from_git/.zsh-vi-mode ]]; then
-    if [[ $(diff -r ./.zsh-vi-mode ~/.shit_from_git/.zsh-vi-mode) != "" ]]; then
+    if [[ $(diff -r ./.zsh-vi-mode ~/.shit_from_git/.zsh-vi-mode) != "" ]] || [[ $(diff -r ./.zsh-vi-mode ~/.shit_from_git/.zsh-vi-mode) -eq 0 ]]; then
         sudo mv ./.zsh-vi-mode ~/.shit_from_git/
     fi
 fi
 if ! [[ -d ~/powerlevel10k ]]; then
-    if [[ $(diff -r ./powerlevel10k ~/powerlevel10k) != "" ]]; then
+    if [[ $(diff -r ./powerlevel10k ~/powerlevel10k) != "" ]] || [[ $(diff -r ./powerlevel10k ~/powerlevel10k) -eq 0 ]]; then
         sudo mv ./powerlevel10k ~/
     fi
 fi
 if ! [[ -d ~/.oh-my-zsh ]]; then
-    if [[ $(diff -r ./.oh-my-zsh ~/.oh-my-zsh) != "" ]]; then
+    if [[ $(diff -r ./.oh-my-zsh ~/.oh-my-zsh) != "" ]] || [[ $(diff -r ./.oh-my-zsh ~/.oh-my-zsh) -eq 0 ]]; then
         sudo mv ./.oh-my-zsh ~/
     fi
 fi
 if ! [[ -d ~/.shit_from_git/dwmbar ]]; then
-    if [[ $(diff -r ./dwmbar ~/.shit_from_git/dwmbar) != "" ]]; then
+    if [[ $(diff -r ./dwmbar ~/.shit_from_git/dwmbar) != "" ]] || [[ $(diff -r ./dwmbar ~/.shit_from_git/dwmbar) -eq 0 ]]; then
         sudo mv ./dwmbar ~/.shit_from_git/
         cd ~/.shit_from_git/dwmbar && sudo ./install.sh
         cd ~/arch
     fi
 fi
 if ! [[ -d ~/.shit_from_git/zsh-syntax-highlighting ]]; then
-    if [[ $(diff -r ./zsh-syntax-highlighting ~/.shit_from_git/zsh-syntax-highlighting) != "" ]]; then
+    if [[ $(diff -r ./zsh-syntax-highlighting ~/.shit_from_git/zsh-syntax-highlighting) != "" ]] || [[ $(diff -r ./zsh-syntax-highlighting ~/.shit_from_git/zsh-syntax-highlighting) -eq 0 ]]; then
         sudo mv ./zsh-syntax-highlighting ~/.shit_from_git/
     fi
 fi
 if ! [[ -d ~/dwm-flexipatch ]]; then
-    if [[ $(diff -r ./dwm-flexipatch ~/dwm-flexipatch) != "" ]]; then
+    if [[ $(diff -r ./dwm-flexipatch ~/dwm-flexipatch) != "" ]] || [[ $(diff -r ./dwm-flexipatch ~/dwm-flexipatch) -eq 0 ]]; then
         sudo mv ./dwm-flexipatch ~/
         cd ~/dwm-flexipatch && sudo make install
         cd ~/arch
     fi
 fi
 if ! [[ -d ~/.shit_from_git/picom ]]; then
-    if [[ $(diff -r ./picom ~/.shit_from_git/picom) != "" ]]; then
+    if [[ $(diff -r ./picom ~/.shit_from_git/picom) != "" ]] || [[ $(diff -r ./picom ~/.shit_from_git/picom) -eq 0 ]]; then
         sudo mv ./picom ~/.shit_from_git/
         cd ~/.shit_from_git/picom && meson --buildtype=release . build && ninja -C build
         cd ~/arch
     fi
 fi
 if ! [[ -d ~/.shit_from_git/warpd ]]; then
-    if [[ $(diff -r ./warpd ~/.shit_from_git/warpd) != "" ]]; then
+    if [[ $(diff -r ./warpd ~/.shit_from_git/warpd) != "" ]] || [[ $(diff -r ./warpd ~/.shit_from_git/warpd) -eq 0 ]]; then
         sudo mv ./warpd ~/.shit_from_git/
         cd ~/.shit_from_git/warpd && make PREFIX=/usr && sudo make install PREFIX=/usr
         cd ~/arch
