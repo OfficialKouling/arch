@@ -23,6 +23,7 @@ elif [[ $theme == 1 ]]; then
 elif [[ $theme == 3 ]]; then
     sudo tar -xf ./cache/dwm-flexipatch2.tar
     sudo cp -r ./cache/set2.jpg ~/wallpapers/set.jpg
+
 else
     sudo tar -xf ./cache/dwm-flexipatch1.tar
     sudo cp -r ./cache/set1.jpg ~/wallpapers/set.jpg
