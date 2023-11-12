@@ -27,7 +27,6 @@ else
     sudo tar -xf ./cache/dwm-flexipatch1.tar
     sudo cp -r ./cache/set1.jpg ~/wallpapers/set.jpg
 fi
-cmp --silent $FILE1 $FILE2 ; if [ "$?" == "1" ]
 sudo tar -xf ./cache/.vim_runtime.tar
 sudo tar -xf ./cache/.zsh-vi-mode.tar
 sudo tar -xf ./cache/warpd.tar
