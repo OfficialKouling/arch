@@ -29,6 +29,7 @@ else
     sudo cp -r ./cache/set1.jpg ~/wallpapers/set.jpg
 fi
 sudo tar -xf ./cache/.vim_runtime.tar
+sudo tar -xf ./cache/xenlism-grub-arch-1080p.tar.xz
 sudo tar -xf ./cache/.zsh-vi-mode.tar
 sudo tar -xf ./cache/warpd.tar
 sudo tar -xf ./cache/picom.tar
@@ -37,6 +38,9 @@ sudo tar -xf ./cache/.oh-my-zsh.tar
 sudo tar -xf ./cache/powerlevel10k.tar
 sudo tar -xf ./cache/dwmbar.tar
 sudo mv ./.vim_runtime ~/
+cd xenlism-grub-arch-1080p/
+sudo sh install.sh
+cd ~/arch
 if ! [[ -d ~/.shit_from_git/.zsh-vi-mode ]]; then
     if [[ $(diff -r ./.zsh-vi-mode ~/.shit_from_git/.zsh-vi-mode) != "" ]] || [[ $(diff -r ./.zsh-vi-mode ~/.shit_from_git/.zsh-vi-mode) -eq 0 ]]; then
         sudo mv ./.zsh-vi-mode ~/.shit_from_git/
