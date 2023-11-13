@@ -127,6 +127,7 @@ fi
 if [[ $touchpad == 1 ]]; then
     sudo pacman -Sy libinput --noconfirm
     sudo cp -r ./cache/30-touchpad.conf /etc/X11/xorg.conf.d/
+    sudo yay -Sy ruby-fusuma --noconfirm
 elif [[ $touchpad == 2 ]]; then
     echo "Ok"
 else
