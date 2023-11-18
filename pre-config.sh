@@ -89,6 +89,8 @@ if ! [[ -d ~/.shit_from_git/warpd ]]; then
         cd ~/arch
     fi
 fi
+sudo pacman -Sy libx11 pulseaudio libxinerama fontconfig libxft ttf-font-awesome python-pywal lsd bat thefuck cmake libev uthash libconfig feh xorg meson ninja --noconfirm
+sudo pacman -Sy python flameshot light sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
 if [[ $lightdm == 1 ]]; then
     sudo rm -Rf /etc/lightdm
     sudo cp -r ./cache/lightdm /etc/lightdm
@@ -101,8 +103,6 @@ elif [[ $lightdm == 2 ]]; then
 else
     echo "I don't install lightdm"
 fi
-sudo pacman -Sy libx11 pulseaudio libxinerama fontconfig libxft ttf-font-awesome python-pywal lsd bat thefuck cmake libev uthash libconfig feh xorg meson ninja --noconfirm
-sudo pacman -Sy python flameshot light sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
 sudo cp -r ./cache/themes/* /usr/share/rofi/themes/
 sudo cp -r ./cache/fonts /usr/share/
 sudo cp -r ./cache/kitty/kitty.conf ~/.config/kitty/
@@ -117,7 +117,7 @@ elif [[ $video_card == 2  ]]; then
     sudo pacman -Sy mesa xf86-video-intel vulkan-intel --noconfirm
     sudo cp -r ./cache/20-intel.conf /etc/X11/xorg.conf.d/
 elif [[ $video_card == 3  ]]; then
-    sudo yay -Sy nvidia-vulkan --noconfirm
+    yay -Sy nvidia-vulkan --noconfirm
     sudo cp -r ./cache/20-nvidia.conf /etc/X11/xorg.conf.d
 else
     echo "I'll install only mesa"
@@ -127,7 +127,7 @@ fi
 if [[ $touchpad == 1 ]]; then
     sudo pacman -Sy libinput --noconfirm
     sudo cp -r ./cache/30-touchpad.conf /etc/X11/xorg.conf.d/
-    sudo yay -Sy ruby-fusuma --noconfirm
+    yay -Sy ruby-fusuma --noconfirm
 elif [[ $touchpad == 2 ]]; then
     echo "Ok"
 else
