@@ -115,20 +115,6 @@ sudo cp -r ./cache/kitty/kitty.conf ~/.config/kitty/
 sudo cp ./cache/molokai.vim /usr/share/vim/vim90/colors/
 sudo cp ./cache/.vimrc ~/
 sudo systemctl enable systemd-homed
-#Video_card
-if [[ $video_card == 1 ]]; then
-    sudo pacman -Sy mesa xf86-video-amdgpu vulkan-radeon --noconfirm
-    sudo cp -r ./cache/20-amdgpu.conf /etc/X11/xorg.conf.d/
-elif [[ $video_card == 2  ]]; then
-    sudo pacman -Sy mesa xf86-video-intel vulkan-intel --noconfirm
-    sudo cp -r ./cache/20-intel.conf /etc/X11/xorg.conf.d/
-elif [[ $video_card == 3  ]]; then
-    yay -Sy nvidia-vulkan --noconfirm
-    sudo cp -r ./cache/20-nvidia.conf /etc/X11/xorg.conf.d
-else
-    echo "I'll install only mesa"
-    sudo pacman -Sy mesa --noconfirm
-fi
 #Touchpad
 if [[ $touchpad == 1 ]]; then
     sudo pacman -Sy libinput --noconfirm
@@ -148,8 +134,26 @@ echo "exec dwm" >> /etc/X11/xinit/a1xinitrc4
 sudo rm -rf /etc/X11/xinit/xinitrc
 sudo cp -r /etc/X11/xinit/a1xinitrc4 /etc/X11/xinit/xinitrc
 sudo rm -rf /etc/X11/xinit/a1xinitrc*
+echo "[multilib]" >> /etc/pacman.conf
+echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 exit
 EOT
+#Video_card
+if [[ $video_card == 1 ]]; then
+    sudo pacman -Sy mesa xf86-video-amdgpu vulkan-radeon --noconfirm
+    sudo cp -r ./cache/20-amdgpu.conf /etc/X11/xorg.conf.d/
+elif [[ $video_card == 2  ]]; then
+    sudo pacman -Sy mesa xf86-video-intel vulkan-intel --noconfirm
+    sudo cp -r ./cache/20-intel.conf /etc/X11/xorg.conf.d/
+elif [[ $video_card == 3  ]]; then
+    yay -Sy nvidia-vulkan --noconfirm
+    sudo pacman -Sy nvidia vulkan-icd-loader lib32-nvidia-utils --noconfirm
+    sudo nvidia-xconfig
+    sudo cp -r ./cache/20-nvidia.conf /etc/X11/xorg.conf.d
+else
+    echo "I'll install only mesa"
+    sudo pacman -Sy mesa --noconfirm
+fi
 sudo cp -r ./cache/script.sh ~/.
 sudo cp -r ./cache/.xprofile ~/.
 sudo cp -r ./cache/dwm.desktop /usr/share/xsessions/dwm.desktop
