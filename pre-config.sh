@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo pacman -Syu --noconfirm
 echo "Select your style"
-echo "1)Blue 2)Orange 3)Skyrim"
+echo "1)Blue 2)Orange 3)Skyrim 4)Red Skull"
 read theme
 echo "Do you have a touchpad?"
 echo "1)Yes 2)No"
@@ -14,18 +14,24 @@ echo "1)Yes 2)No"
 read lightdm
 sudo mkdir /usr/share/xsessions ~/wallpapers ~/.config ~/.config/kitty ~/.config/rofi
 sudo pacman -U ./cache/yay-12.1.3-1-x86_64.pkg.tar.zst --noconfirm
+sudo tar -xf ./cache/dwm-flexipatch.tar
 if [[ $theme == 2 ]]; then
-    sudo tar -xf ./cache/dwm-flexipatch.tar
     sudo cp -r ./cache/set.jpg ~/wallpapers/set.jpg
 elif [[ $theme == 1 ]]; then
-    sudo tar -xf ./cache/dwm-flexipatch1.tar
+    sudo rm -rf ./dwm-flexipatch/config.h
+    sudo cp -r config.h1 ./dwm-flexipatch/config.h
     sudo cp -r ./cache/set1.jpg ~/wallpapers/set.jpg
+elif [[ $theme == 4 ]]; then
+    sudo rm -rf ./dwm-flexipatch/config.h
+    sudo cp -r config.h3 ./dwm-flexipatch/config.h
+    sudo cp -r ./cache/set4.jpg ~/wallpapers/set.jpg
 elif [[ $theme == 3 ]]; then
-    sudo tar -xf ./cache/dwm-flexipatch2.tar
+    sudo rm -rf ./dwm-flexipatch/config.h
+    sudo cp -r config.h2 ./dwm-flexipatch/config.h
     sudo cp -r ./cache/set2.jpg ~/wallpapers/set.jpg
-
 else
-    sudo tar -xf ./cache/dwm-flexipatch1.tar
+    sudo rm -rf ./dwm-flexipatch/config.h
+    sudo cp -r config.h1 ./dwm-flexipatch/config.h
     sudo cp -r ./cache/set1.jpg ~/wallpapers/set.jpg
 fi
 sudo tar -xf ./cache/.vim_runtime.tar
