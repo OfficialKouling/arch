@@ -5,6 +5,8 @@ read boot
 fdisk -l | awk '/dev/ {print}'
 echo "Write a disk name (ex. /dev/sda)"
 read disk
+echo "Do you want to install linux-zen? (select number) 1)Yes 2)No"
+read zen
 disk1="${disk}1"
 disk2="${disk}2"
 disk3="${disk}3"
@@ -37,7 +39,13 @@ else
 fi
 mount --mkdir ${disk4} /mnt/home
 #Install system
-pacstrap /mnt base base-devel linux linux-firmware vim git neofetch networkmanager
+if [ $zen == 2 ]; then
+    pacstrap /mnt base base-devel linux linux-firmware vim git neofetch networkmanager
+else if [ $zen == 1 ]; then
+    pacstrap /mnt base base-devel linux-zen linux-zen-headers vim git neofetch networkmanager
+else
+    pacstrap /mnt base base-devel linux linux-firmware vim git neofetch networkmanager
+fi
 #Configure system
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt <<"EOT"
