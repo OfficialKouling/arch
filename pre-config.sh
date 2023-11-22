@@ -114,6 +114,7 @@ sudo cp -r ./cache/fonts /usr/share/
 sudo cp -r ./cache/kitty/kitty.conf ~/.config/kitty/
 sudo cp ./cache/molokai.vim /usr/share/vim/vim90/colors/
 sudo cp ./cache/.vimrc ~/
+sudo cp ./cache/picom.conf /etc/xdg/picom.conf
 sudo systemctl enable systemd-homed
 #Touchpad
 if [[ $touchpad == 1 ]]; then
