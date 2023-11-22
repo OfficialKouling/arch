@@ -117,7 +117,7 @@ sudo cp -r ./cache/kitty/kitty.conf ~/.config/kitty/
 sudo cp ./cache/molokai.vim /usr/share/vim/vim90/colors/
 sudo mv ./icons/Amy-Dark-Icons ~/.local/share/icons/
 sudo mv ./icons/Sweet-cursors ~/.local/share/icons/
-sudo mv ./icons/Amy-Dark-GTK.tar.gz ~/.local/share/themes/
+sudo mv ./icons/Amy-Dark-GTK.tar.gz ~/.local/share/themes/ && cd ~/.local/share/themes && tar -xf Amy-Dark-GTK.tar.gz && cd ~/arch
 sudo cp ./cache/.vimrc ~/
 sudo cp ./cache/picom.conf /etc/xdg/picom.conf
 sudo systemctl enable systemd-homed
