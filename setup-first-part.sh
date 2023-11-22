@@ -41,7 +41,7 @@ mount --mkdir ${disk4} /mnt/home
 #Install system
 if [ $zen == 2 ]; then
     pacstrap /mnt base base-devel linux linux-firmware vim git neofetch networkmanager
-else if [ $zen == 1 ]; then
+elif [ $zen == 1 ]; then
     pacstrap /mnt base base-devel linux-zen linux-zen-headers vim git neofetch networkmanager
 else
     pacstrap /mnt base base-devel linux linux-firmware vim git neofetch networkmanager
