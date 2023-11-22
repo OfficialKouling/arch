@@ -1,8 +1,0 @@
-#!/bin/bash
-username=$(ls /home | awk '/^[^lost+found]/ { print $1 }')
-sh /home/${username}/script.sh
-setxkbmap 'pl,ru' -option 'grp:ctrl_space_toggle'
-dwmbar &
-~/.shit_from_git/picom/build/src/picom -b --experimental-backends &
-wal -i ~/wallpapers/set.jpg &
-sxhkd &
