@@ -12,6 +12,8 @@ read video_card
 echo "Do you want to install lightdm?"
 echo "1)Yes 2)No"
 read lightdm
+sudo bzip2 -d cache.tar.bz2
+sudo tar -xf cache.tar
 sudo mkdir /usr/share/xsessions ~/wallpapers ~/.config ~/.config/kitty ~/.config/rofi
 sudo pacman -U ./cache/yay-12.1.3-1-x86_64.pkg.tar.zst --noconfirm
 sudo tar -xf ./cache/dwm-flexipatch.tar
@@ -100,8 +102,8 @@ sudo pacman -Sy python flameshot light sxhkd lightdm kitty rofi lightdm-gtk-gree
 if [[ $lightdm == 1 ]]; then
     sudo rm -Rf /etc/lightdm
     sudo cp -r ./cache/lightdm /etc/lightdm
-    sudo cp -r ./cache/slick-greeter.conf /etc/lightdm/slick-greeter.conf
-    sudo cp -r ./cache/background.jpg /usr/share/background.jpg
+    sudo cp ./cache/slick-greeter.conf /etc/lightdm/slick-greeter.conf
+    sudo cp ./cache/background.jpg /usr/share/background.jpg
     sudo systemctl enable lightdm
     sudo chown root:root -R /etc/lightdm
 elif [[ $lightdm == 2 ]]; then
@@ -113,6 +115,9 @@ sudo cp -r ./cache/themes/* /usr/share/rofi/themes/
 sudo cp -r ./cache/fonts /usr/share/
 sudo cp -r ./cache/kitty/kitty.conf ~/.config/kitty/
 sudo cp ./cache/molokai.vim /usr/share/vim/vim90/colors/
+sudo mv ./icons/Amy-Dark-Icons ~/.local/share/icons/
+sudo mv ./icons/Sweet-cursors ~/.local/share/icons/
+sudo mv ./icons/Amy-Dark-GTK.tar.gz ~/.local/share/themes/
 sudo cp ./cache/.vimrc ~/
 sudo cp ./cache/picom.conf /etc/xdg/picom.conf
 sudo systemctl enable systemd-homed
