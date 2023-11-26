@@ -14,7 +14,10 @@ echo "1)Yes 2)No"
 read lightdm
 sudo bzip2 -d cache.tar.bz2
 sudo tar -xf cache.tar
-sudo mkdir /usr/share/xsessions ~/wallpapers ~/.config ~/.config/kitty ~/.config/rofi
+sudo mkdir /usr/share/xsessions ~/wallpapers ~/.config ~/.config/kitty ~/.config/rofi ~/.config/ranger
+sudo touch ~/.config/ranger/rc.conf
+sudo echo "set preview_images true" >> ~/.config/ranger/rc.conf
+sudo echo "set preview_images_method  ueberzug" >> ~/.config/ranger/rc.conf
 sudo pacman -U ./cache/yay-12.1.3-1-x86_64.pkg.tar.zst --noconfirm
 sudo tar -xf ./cache/dwm-flexipatch.tar
 if [[ $theme == 2 ]]; then
@@ -99,6 +102,7 @@ if ! [[ -d ~/.shit_from_git/warpd ]]; then
 fi
 sudo pacman -Sy libx11 pulseaudio libxinerama fontconfig libxft ttf-font-awesome python-pywal lsd bat thefuck cmake libev uthash libconfig feh xorg meson ninja --noconfirm
 sudo pacman -Sy lxappearance-gtk3 python flameshot light sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
+sudo pacman -Sy python-ueberzug ranger --noconfirm
 if [[ $lightdm == 1 ]]; then
     sudo rm -Rf /etc/lightdm
     sudo cp -r ./cache/lightdm /etc/lightdm
