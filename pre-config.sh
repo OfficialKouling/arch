@@ -12,9 +12,8 @@ read video_card
 echo "Do you want to install lightdm?"
 echo "1)Yes 2)No"
 read lightdm
-sudo bzip2 -d cache.tar.bz2
-sudo tar -xf cache.tar
-sudo mkdir /usr/share/xsessions ~/wallpapers ~/.config ~/.config/kitty ~/.config/rofi ~/.config/ranger
+sudo tar -xf cache.tar.bz2
+sudo mkdir /usr/share/xsessions ~/wallpapers ~/.config ~/.config/neofetch ~/.config/kitty ~/.config/rofi ~/.config/ranger
 sudo touch ~/.config/ranger/rc.conf
 sudo echo "set preview_images true" >> ~/.config/ranger/rc.conf
 sudo echo "set preview_images_method  ueberzug" >> ~/.config/ranger/rc.conf
@@ -40,7 +39,7 @@ else
     sudo cp -r ./cache/set1.jpg ~/wallpapers/set.jpg
 fi
 sudo tar -xf ./cache/.vim_runtime.tar
-sudo tar -xf ./cache/xenlism-grub-arch-1080p.tar.xz
+sudo tar -xf ./cache/blur-grub2_fullhd.tar
 sudo tar -xf ./cache/.zsh-vi-mode.tar
 sudo tar -xf ./cache/warpd.tar
 sudo tar -xf ./cache/picom.tar
@@ -49,7 +48,7 @@ sudo tar -xf ./cache/.oh-my-zsh.tar
 sudo tar -xf ./cache/powerlevel10k.tar
 sudo tar -xf ./cache/dwmbar.tar
 sudo mv ./.vim_runtime ~/
-cd xenlism-grub-arch-1080p/
+cd blur-grub2_fullhd/
 sudo sh install.sh
 cd ~/arch
 if ! [[ -d ~/.shit_from_git/.zsh-vi-mode ]]; then
@@ -124,6 +123,7 @@ sudo mv ./icons/Sweet-cursors ~/.local/share/icons/
 sudo mv ./icons/Amy-Dark-GTK.tar.gz ~/.local/share/themes/ && cd ~/.local/share/themes && tar -xf Amy-Dark-GTK.tar.gz && cd ~/arch
 sudo cp ./cache/.vimrc ~/
 sudo cp ./cache/picom.conf /etc/xdg/picom.conf
+sudo cp ./cache/config.conf ~/.config/neofetch/
 sudo systemctl enable systemd-homed
 #Touchpad
 if [[ $touchpad == 1 ]]; then
