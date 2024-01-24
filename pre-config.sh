@@ -103,6 +103,7 @@ sudo pacman -Sy libx11 pulseaudio libxinerama fontconfig libxft ttf-font-awesome
 sudo pacman -Sy lxappearance-gtk3 python flameshot sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
 sudo pacman -Sy python-ueberzug ranger --noconfirm
 if [[ $lightdm == 1 ]]; then
+    sudo pacman -Sy lightdm
     sudo rm -Rf /etc/lightdm
     sudo cp -r ./cache/lightdm /etc/lightdm
     sudo cp ./cache/slick-greeter.conf /etc/lightdm/slick-greeter.conf
