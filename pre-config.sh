@@ -100,7 +100,7 @@ if ! [[ -d ~/.shit_from_git/warpd ]]; then
     fi
 fi
 sudo pacman -Sy libx11 pulseaudio libxinerama fontconfig libxft ttf-font-awesome python-pywal lsd bat thefuck cmake libev uthash libconfig feh xorg meson ninja --noconfirm
-sudo pacman -Sy lxappearance-gtk3 python flameshot light sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
+sudo pacman -Sy lxappearance-gtk3 python flameshot sxhkd lightdm kitty rofi lightdm-gtk-greeter accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
 sudo pacman -Sy python-ueberzug ranger --noconfirm
 if [[ $lightdm == 1 ]]; then
     sudo rm -Rf /etc/lightdm
