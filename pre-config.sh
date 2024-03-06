@@ -12,7 +12,6 @@ read video_card
 echo "Do you want to install lightdm?"
 echo "1)Yes 2)No"
 read lightdm
-sudo tar -xf cache.tar.bz2
 sudo mkdir /usr/share/xsessions ~/wallpapers ~/.config ~/.config/neofetch ~/.config/kitty ~/.config/rofi ~/.config/ranger
 sudo touch ~/.config/ranger/rc.conf
 sudo echo "set preview_images true" >> ~/.config/ranger/rc.conf
