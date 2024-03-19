@@ -32,6 +32,30 @@ gum style \
 	'Do you want to install linux-zen?'
 zen="$(gum choose --limit 1 Yes No)"
 clear
+gum style \
+	--foreground 212 --border-foreground 212 --border double \
+	--align center --width 50 --margin "1 2" --padding "2 4" \
+	"Write a PC name (ex. server)"
+pc_name=$(gum input --placeholder "PC name")
+clear
+gum style \
+	--foreground 212 --border-foreground 212 --border double \
+	--align center --width 50 --margin "1 2" --padding "2 4" \
+	"Write a root password (ex. 1234)"
+root_password=$(gum input --password --placeholder "root password")
+clear
+gum style \
+	--foreground 212 --border-foreground 212 --border double \
+	--align center --width 50 --margin "1 2" --padding "2 4" \
+	"Write a username (ex. giovanni_giorgio)"
+username=$(gum input --placeholder "username")
+clear
+gum style \
+	--foreground 212 --border-foreground 212 --border double \
+	--align center --width 50 --margin "1 2" --padding "2 4" \
+	"Write a password for username (ex. qwerty)"
+username_password=$(gum input --placeholder "${username} password")
+clear
 disk1="${disk}1"
 disk2="${disk}2"
 disk3="${disk}3"
@@ -75,7 +99,38 @@ fi
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt <<EOF
 git clone https://github.com/OfficialKouling/arch
-echo ${disk2}
 cd arch
+ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime
+hwclock --systohc
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+locale-gen
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+echo "${pc_name}" > /etc/hostname
+echo "127.0.0.1	localhost" > /etc/hosts
+echo "::1	     localhost" >> /etc/hosts
+echo "127.0.0.1	${pc_name}.localdomain	${pc_name}"
+systemctl enable NetworkManager
+chpasswd <<<"root:${root_password}"
+useradd ${username}
+chpasswd <<<"${username}:${username_password}"
+usermod -aG wheel ${username}
+mkdir /home/${username}
+chown ${username}:${username} /home/${username}
+git clone https://github.com/OfficialKouling/arch /home/${username}/.shit_from_git
+pacman -Sy grub efibootmgr sudo --noconfirm
+echo "%sudo	ALL=(ALL:ALL) ALL" >> /etc/sudoers
+echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
+if [ $boot == 1 ]; then
+    grub-install --target=i386-pc /dev/sda
+elif [ $boot == 2 ]; then
+    grub-install --target=x86_64-efi --efi-directory=/boot/efi
+    grub-mkconfig -o /boot/grub/grub.cfg
+    mkdir /boot/efi/EFI/boot
+    cp /boot/efi/EFI/arch/grubx64.efi /boot/efi/EFI/boot/bootx64.efi
+else
+    echo "errr3r1oro1r46@!3ororor21415o12ro1213rorrrr"
+fi
+mv /arch /home/${username}
+chown ${username}:${username} -R /home/${username}/arch
 EOF
 arch-chroot /mnt
