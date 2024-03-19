@@ -18,13 +18,13 @@ gum style \
 	--foreground 212 --border-foreground 212 --border double \
 	--align center --width 50 --margin "1 2" --padding "2 4" \
 	'Give me size of SWAP partition'
-swap_size="$(gum choose --limit 1 8000M 4000M 2000M 1000M)"
+swap_size="$(gum choose --limit 1 8192M 4096M 2048M 1024M)"
 clear
 gum style \
 	--foreground 212 --border-foreground 212 --border double \
 	--align center --width 50 --margin "1 2" --padding "2 4" \
 	'Give me size of root partition'
-root_size="$(gum choose --limit 1 60000M 40000M 20000M 10000M)"
+root_size="$(gum choose --limit 1 61440M 40960M 20480M 10240M)"
 clear
 gum style \
 	--foreground 212 --border-foreground 212 --border double \
