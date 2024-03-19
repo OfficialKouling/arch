@@ -5,12 +5,14 @@ gum style \
 	--align center --width 50 --margin "1 2" --padding "2 4" \
 	'Do you have BIOS or UEFI?'
 boot="$(gum choose --limit 1 BIOS UEFI)"
+clear
 lsblk | awk '{print $1, $4}'
 gum style \
 	--foreground 212 --border-foreground 212 --border double \
 	--align center --width 50 --margin "1 2" --padding "2 4" \
 	'Which is your disk? (ex. /dev/sda)'
 disk="$(gum choose --limit 1 /dev/sda /dev/sdb /dev/sdd /dev/nvme0n1p)"
+clear
 swap_size="$(gum choose --limit 1 8000M 4000M 2000M 1000M)"
 root_size="$(gum choose --limit 1 60000M 40000M 20000M 10000M)"
 gum style \
@@ -18,6 +20,7 @@ gum style \
 	--align center --width 50 --margin "1 2" --padding "2 4" \
 	'Do you want to install linux-zen?'
 zen="$(gum choose --limit 1 Yes No)"
+clear
 disk1="${disk}1"
 disk2="${disk}2"
 disk3="${disk}3"
