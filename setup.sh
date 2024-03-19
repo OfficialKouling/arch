@@ -54,7 +54,7 @@ gum style \
 	--foreground 212 --border-foreground 212 --border double \
 	--align center --width 50 --margin "1 2" --padding "2 4" \
 	"Write a password for username (ex. qwerty)"
-username_password=$(gum input --placeholder "${username} password")
+username_password=$(gum input --password --placeholder "${username} password")
 clear
 disk1="${disk}1"
 disk2="${disk}2"
