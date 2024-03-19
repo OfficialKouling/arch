@@ -111,8 +111,10 @@ echo "::1	     localhost" >> /etc/hosts
 echo "127.0.0.1	${pc_name}.localdomain	${pc_name}"
 systemctl enable NetworkManager
 chpasswd <<<"root:${root_password}"
+clear
 useradd ${username}
 chpasswd <<<"${username}:${username_password}"
+clear
 usermod -aG wheel ${username}
 mkdir /home/${username}
 chown ${username}:${username} /home/${username}
