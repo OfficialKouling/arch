@@ -17,26 +17,7 @@ sudo touch ~/.config/ranger/rc.conf
 sudo echo "set preview_images true" >> ~/.config/ranger/rc.conf
 sudo echo "set preview_images_method  ueberzug" >> ~/.config/ranger/rc.conf
 sudo pacman -U ./cache/yay-12.1.3-1-x86_64.pkg.tar.zst --noconfirm
-sudo tar -xf ./cache/dwm-flexipatch.tar
-if [[ $theme == 2 ]]; then
-    sudo cp -r ./cache/set.jpg ~/wallpapers/set.jpg
-elif [[ $theme == 1 ]]; then
-    sudo rm -rf ./dwm-flexipatch/config.h
-    sudo cp -r config.h1 ./dwm-flexipatch/config.h
-    sudo cp -r ./cache/set1.jpg ~/wallpapers/set.jpg
-elif [[ $theme == 4 ]]; then
-    sudo rm -rf ./dwm-flexipatch/config.h
-    sudo cp -r config.h3 ./dwm-flexipatch/config.h
-    sudo cp -r ./cache/set4.jpg ~/wallpapers/set.jpg
-elif [[ $theme == 3 ]]; then
-    sudo rm -rf ./dwm-flexipatch/config.h
-    sudo cp -r config.h2 ./dwm-flexipatch/config.h
-    sudo cp -r ./cache/set2.jpg ~/wallpapers/set.jpg
-else
-    sudo rm -rf ./dwm-flexipatch/config.h
-    sudo cp -r config.h1 ./dwm-flexipatch/config.h
-    sudo cp -r ./cache/set1.jpg ~/wallpapers/set.jpg
-fi
+(cd .shit_from_git && git clone https://github.com/bakkeby/dwm-flexipatch)
 sudo tar -xf ./cache/.vim_runtime.tar
 sudo tar -xf ./cache/blur-grub2_fullhd.tar
 sudo tar -xf ./cache/.zsh-vi-mode.tar
