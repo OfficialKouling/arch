@@ -1,5 +1,6 @@
 #!/bin/bash
 pacman -S gum --noconfirm
+clear
 gum style \
 	--foreground 212 --border-foreground 212 --border double \
 	--align center --width 50 --margin "1 2" --padding "2 4" \
@@ -13,8 +14,18 @@ gum style \
 	'Which is your disk? (ex. /dev/sda)'
 disk="$(gum choose --limit 1 /dev/sda /dev/sdb /dev/sdd /dev/nvme0n1p)"
 clear
+gum style \
+	--foreground 212 --border-foreground 212 --border double \
+	--align center --width 50 --margin "1 2" --padding "2 4" \
+	'Give me size of SWAP partition'
 swap_size="$(gum choose --limit 1 8000M 4000M 2000M 1000M)"
+clear
+gum style \
+	--foreground 212 --border-foreground 212 --border double \
+	--align center --width 50 --margin "1 2" --padding "2 4" \
+	'Give me size of root partition'
 root_size="$(gum choose --limit 1 60000M 40000M 20000M 10000M)"
+clear
 gum style \
 	--foreground 212 --border-foreground 212 --border double \
 	--align center --width 50 --margin "1 2" --padding "2 4" \
