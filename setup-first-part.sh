@@ -1,12 +1,23 @@
 #!/bin/bash
-echo "Do you have BIOS or UEFI?"
-echo "1)Bios    2)UEFI"
-read boot
-fdisk -l | awk '/dev/ {print}'
-echo "Write a disk name (ex. /dev/sda)"
-read disk
-echo "Do you want to install linux-zen? (select number) 1)Yes 2)No"
-read zen
+pacman -S gum --noconfirm
+gum style \
+	--foreground 212 --border-foreground 212 --border double \
+	--align center --width 50 --margin "1 2" --padding "2 4" \
+	'Do you have BIOS or UEFI?'
+boot="$(gum choose --limit 1 BIOS UEFI)"
+lsblk | awk '{print $1, $4}'
+gum style \
+	--foreground 212 --border-foreground 212 --border double \
+	--align center --width 50 --margin "1 2" --padding "2 4" \
+	'Which is your disk? (ex. /dev/sda)'
+disk="$(gum choose --limit 1 /dev/sda /dev/sdb /dev/sdd /dev/nvme0n1p)"
+swap_size="$(gum choose --limit 1 8000M 4000M 2000M 1000M)"
+root_size="$(gum choose --limit 1 60000M 40000M 20000M 10000M)"
+gum style \
+	--foreground 212 --border-foreground 212 --border double \
+	--align center --width 50 --margin "1 2" --padding "2 4" \
+	'Do you want to install linux-zen?'
+zen="$(gum choose --limit 1 Yes No)"
 disk1="${disk}1"
 disk2="${disk}2"
 disk3="${disk}3"
@@ -14,8 +25,8 @@ disk4="${disk}4"
 #Disk partitioning
 sfdisk ${disk} <<EOF
 2048,525M,b
-,8000M,S
-,20000M,L
+,${swap_size},S
+,${root_size},L
 ;
 EOF
 #sfdisk -n --part-type  ${disk} 2 0657FD6D-A4AB-43C4-84E5-0933C84B4F4F
@@ -30,27 +41,27 @@ mkfs.ext4 $disk4 &&
 #Mount disks
 swapon $disk2
 mount --mkdir ${disk3} /mnt
-if [ $boot == 1 ]; then
+if [ $boot == "BIOS" ]; then
     mount --mkdir ${disk1} /mnt/boot
-elif [ $boot == 2 ]; then
+elif [ $boot == "UEFI" ]; then
     mount --mkdir ${disk1} /mnt/boot/efi
 else
     mount --mkdir ${disk1} /mnt/boot/efi
 fi
 mount --mkdir ${disk4} /mnt/home
 #Install system
-if [ $zen == 2 ]; then
+if [ $zen == "No" ]; then
     pacstrap /mnt base base-devel linux linux-firmware vim git neofetch networkmanager
-elif [ $zen == 1 ]; then
+elif [ $zen == "Yes" ]; then
     pacstrap /mnt base base-devel linux-zen linux-zen-headers vim git neofetch networkmanager
 else
     pacstrap /mnt base base-devel linux linux-firmware vim git neofetch networkmanager
 fi
 #Configure system
 genfstab -U /mnt >> /mnt/etc/fstab
-arch-chroot /mnt <<"EOT"
+arch-chroot /mnt <<EOF
 git clone https://github.com/OfficialKouling/arch
 echo ${disk2}
 cd arch
-EOT
+EOF
 arch-chroot /mnt
