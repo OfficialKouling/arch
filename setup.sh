@@ -1,65 +1,31 @@
 #!/bin/bash
 pacman -S gum --noconfirm
+banner () {
+    gum style \
+        --foreground 212 --border-foreground 212 --border double \
+        --align center --width 50 --margin "1 2" --padding "2 4" \
+        "$_text"
+}
 clear
-gum style \
-	--foreground 212 --border-foreground 212 --border double \
-	--align center --width 50 --margin "1 2" --padding "2 4" \
-	'Do you have BIOS or UEFI?'
-boot="$(gum choose --limit 1 BIOS UEFI)"
-clear
+_text='Do you have BIOS or UEFI?' && banner
+boot="$(gum choose --limit 1 BIOS UEFI)" && clear
 lsblk | awk '{print $1, $4}'
-gum style \
-	--foreground 212 --border-foreground 212 --border double \
-	--align center --width 50 --margin "1 2" --padding "2 4" \
-	'Which is your disk? (ex. /dev/sda)'
-disk="$(gum choose --limit 1 /dev/sda /dev/sdb /dev/sdd /dev/nvme0n1p)"
-clear
-gum style \
-	--foreground 212 --border-foreground 212 --border double \
-	--align center --width 50 --margin "1 2" --padding "2 4" \
-	'Give me size of SWAP partition'
-swap_size="$(gum choose --limit 1 8192M 4096M 2048M 1024M)"
-clear
-gum style \
-	--foreground 212 --border-foreground 212 --border double \
-	--align center --width 50 --margin "1 2" --padding "2 4" \
-	'Give me size of root partition'
-root_size="$(gum choose --limit 1 61440M 40960M 20480M 10240M)"
-clear
-gum style \
-	--foreground 212 --border-foreground 212 --border double \
-	--align center --width 50 --margin "1 2" --padding "2 4" \
-	'Do you want to install linux-zen?'
-zen="$(gum choose --limit 1 Yes No)"
-clear
-gum style \
-	--foreground 212 --border-foreground 212 --border double \
-	--align center --width 50 --margin "1 2" --padding "2 4" \
-	"Write a PC name (ex. server)"
-pc_name=$(gum input --placeholder "PC name")
-clear
-gum style \
-	--foreground 212 --border-foreground 212 --border double \
-	--align center --width 50 --margin "1 2" --padding "2 4" \
-	"Write a root password (ex. 1234)"
-root_password=$(gum input --password --placeholder "root password")
-clear
-gum style \
-	--foreground 212 --border-foreground 212 --border double \
-	--align center --width 50 --margin "1 2" --padding "2 4" \
-	"Write a username (ex. giovanni_giorgio)"
-username=$(gum input --placeholder "username")
-clear
-gum style \
-	--foreground 212 --border-foreground 212 --border double \
-	--align center --width 50 --margin "1 2" --padding "2 4" \
-	"Write a password for username (ex. qwerty)"
-username_password=$(gum input --password --placeholder "${username} password")
-clear
-disk1="${disk}1"
-disk2="${disk}2"
-disk3="${disk}3"
-disk4="${disk}4"
+_text='Which is your disk? (ex. /dev/sda)' && banner
+disk="$(gum choose --limit 1 /dev/sda /dev/sdb /dev/sdd /dev/nvme0n1p)" && clear
+_text='Give me size of SWAP partition' && banner
+swap_size="$(gum choose --limit 1 8192M 4096M 2048M 1024M)" && clear
+_text='Give me size of root partition' && banner
+root_size="$(gum choose --limit 1 61440M 40960M 20480M 10240M)" && clear
+_text='Do you want to install linux-zen?' && banner
+zen="$(gum choose --limit 1 Yes No)" && clear
+_text='Write a PC name (ex. server)' && banner
+pc_name=$(gum input --placeholder "PC name") && clear
+_text='Write a root password (ex. 1234)' && banner
+root_password=$(gum input --password --placeholder "root password") && clear
+_text='Write a username (ex. giovanni_giorgio)' && banner
+username=$(gum input --placeholder "username") && clear
+_text='Write a password for username (ex. qwerty)'
+username_password=$(gum input --password --placeholder "${username} password") && clear
 #Disk partitioning
 sfdisk ${disk} <<EOF
 2048,525M,b
@@ -72,21 +38,21 @@ EOF
 #sfdisk -n --part-type  ${disk} 4 0FC63DAF-8483-4772-8E79-3D69D8477DE4
 #sfdisk -n --part-type ${disk} 1 BC13C2FF-59E6-4262-A352-B275FD6F7172
 #Create File System
-mkfs.fat -F 32 $disk1 &&
-mkswap $disk2 &&
-mkfs.ext4 $disk3 &&
-mkfs.ext4 $disk4 &&
+mkfs.fat -F 32 ${disk}1 &&
+mkswap ${disk}2 &&
+mkfs.ext4 ${disk}3 &&
+mkfs.ext4 ${disk}4 &&
 #Mount disks
-swapon $disk2
-mount --mkdir ${disk3} /mnt
+swapon ${disk}2
+mount --mkdir ${disk}3 /mnt
 if [ $boot == "BIOS" ]; then
-    mount --mkdir ${disk1} /mnt/boot
+    mount --mkdir ${disk}1 /mnt/boot
 elif [ $boot == "UEFI" ]; then
-    mount --mkdir ${disk1} /mnt/boot/efi
+    mount --mkdir ${disk}1 /mnt/boot/efi
 else
-    mount --mkdir ${disk1} /mnt/boot/efi
+    mount --mkdir ${disk}1 /mnt/boot/efi
 fi
-mount --mkdir ${disk4} /mnt/home
+mount --mkdir ${disk}4 /mnt/home
 #Install system
 if [ $zen == "No" ]; then
     pacstrap /mnt base base-devel linux linux-firmware vim git neofetch networkmanager
@@ -110,11 +76,9 @@ echo "127.0.0.1	localhost" > /etc/hosts
 echo "::1	     localhost" >> /etc/hosts
 echo "127.0.0.1	${pc_name}.localdomain	${pc_name}"
 systemctl enable NetworkManager
-chpasswd <<<"root:${root_password}"
-clear
+chpasswd <<<"root:${root_password}" && clear
 useradd ${username}
-chpasswd <<<"${username}:${username_password}"
-clear
+chpasswd <<<"${username}:${username_password}" && clear
 usermod -aG wheel ${username}
 mkdir /home/${username}
 chown ${username}:${username} /home/${username}
