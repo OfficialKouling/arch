@@ -1,12 +1,11 @@
 #!/bin/bash
-pacman -S gum --noconfirm
+pacman -S gum --noconfirm && clear
 banner () {
     gum style \
         --foreground 212 --border-foreground 212 --border double \
         --align center --width 50 --margin "1 2" --padding "2 4" \
         "$_text"
 }
-clear
 _text='Do you have BIOS or UEFI?' && banner
 boot="$(gum choose --limit 1 BIOS UEFI)" && clear
 lsblk | awk '{print $1, $4}'
@@ -33,10 +32,6 @@ sfdisk ${disk} <<EOF
 ,${root_size},L
 ;
 EOF
-#sfdisk -n --part-type  ${disk} 2 0657FD6D-A4AB-43C4-84E5-0933C84B4F4F
-#sfdisk -n --part-type  ${disk} 3 0FC63DAF-8483-4772-8E79-3D69D8477DE4
-#sfdisk -n --part-type  ${disk} 4 0FC63DAF-8483-4772-8E79-3D69D8477DE4
-#sfdisk -n --part-type ${disk} 1 BC13C2FF-59E6-4262-A352-B275FD6F7172
 #Create File System
 mkfs.fat -F 32 ${disk}1 &&
 mkswap ${disk}2 &&
