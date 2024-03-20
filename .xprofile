@@ -1,0 +1,6 @@
+#!/bin/bash
+username=$(ls /home | awk '/^[^lost+found]/ { print $1 }')
+sh /home/${username}/picom.sh
+dwmbar &
+wal -i ~/wallpapers/set.jpg &
+sxhkd &

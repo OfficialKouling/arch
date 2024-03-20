@@ -1,7 +1,0 @@
-#!/bin/bash
-username=$(ls /home | awk '/^[^lost+found]/ { print $1 }')
-sh /home/${username}/script.sh
-setxkbmap 'pl,ru' -option 'grp:ctrl_space_toggle'
-dwmbar &
-wal -i ~/wallpapers/set.jpg &
-sxhkd &
