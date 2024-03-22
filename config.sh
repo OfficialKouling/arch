@@ -17,7 +17,7 @@ sudo pacman -Sy libx11 pulseaudio libxinerama fontconfig libxft ttf-font-awesome
 sudo pacman -Sy lsd bat thefuck cmake libev uthash libconfig feh xorg meson ninja --noconfirm
 sudo pacman -Sy lxappearance-gtk3 python flameshot sxhkd lightdm kitty rofi lightdm-gtk-greeter --noconfirm
 sudo pacman -Sy accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
-sudo pacman -Sy python-ueberzug ranger zsh curl --noconfirm
+sudo pacman -Sy python-ueberzug ranger zsh curl gum --noconfirm
 #User variables
 _text="Select your style" && banner
 theme="$(gum choose --limit 1 "Blue, Harry Potter" "Orange, Arch logo" "Blue, Skyrim logo" "Red skull" "My own")" && clear
