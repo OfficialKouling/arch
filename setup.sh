@@ -85,7 +85,7 @@ mkdir /home/${username}
 chown ${username}:${username} /home/${username}
 git clone https://github.com/OfficialKouling/arch /home/${username}/.shit_from_git
 pacman -Sy grub efibootmgr sudo --noconfirm
-echo "%sudo	ALL=(ALL:ALL) ALL" >> /etc/sudoers
+echo "%sudo  ALL=(ALL:ALL) ALL" >> /etc/sudoers
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
 if [ $boot == "BIOS" ]; then
     grub-install --target=i386-pc /dev/sda
