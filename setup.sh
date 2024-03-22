@@ -28,7 +28,7 @@ _text='Write a root password (ex. 1234)' && banner
 root_password=$(gum input --password --placeholder "root password") ; clear
 _text='Write a username (ex. giovanni_giorgio)' && banner
 username=$(gum input --placeholder "username") ; clear
-_text='Write a password for username (ex. qwerty)'
+_text='Write a password for username (ex. qwerty)' && banner
 username_password=$(gum input --password --placeholder "${username} password") ; clear
 #Disk partitioning
 sfdisk ${disk} <<EOF
