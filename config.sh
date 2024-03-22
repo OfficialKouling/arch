@@ -19,6 +19,7 @@ sudo pacman -Sy lxappearance-gtk3 python flameshot sxhkd lightdm kitty rofi ligh
 sudo pacman -Sy accountsservice firefox xorg-server-xephyr lightdm-slick-greeter imlib2 xorg-xinit --noconfirm
 sudo pacman -Sy python-ueberzug ranger zsh curl gum --noconfirm
 #User variables
+clear
 _text="Select your style" && banner
 theme="$(gum choose --limit 1 "Blue, Harry Potter" "Orange, Arch logo" "Blue, Skyrim logo" "Red skull" "My own")" && clear
 _text="Do you have a touchpad?" && banner
@@ -29,13 +30,22 @@ video_card="$(gum choose --limit 1 AMD Intel Nvidia)" && clear
 sudo mkdir /usr/share/xsessions ~/wallpapers ~/.config ~/.config/neofetch ~/.config/kitty ~/.config/rofi ~/.config/ranger
 sudo chown ${username}:${username} -R /home/${username}
 touch ~/.config/ranger/rc.conf
-echo "set preview_images true" >> ~/.config/ranger/rc.conf
+echo "set preview_images true" > ~/.config/ranger/rc.conf
 echo "set preview_images_method ueberzug" >> ~/.config/ranger/rc.conf
 (cd ~/.shit_from_git && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -sri)
 sudo pacman -U ~/.s/yay-12.1.3-1-x86_64.pkg.tar.zst --noconfirm
 tar -xf ./cache/.vim_runtime.tar
 tar -xf ./cache/blur-grub2_fullhd.tar
 mv ./.vim_runtime ~/
+(cd blur-grub2_fullhd/ && sudo sh install.sh)
+(cd ~ && git clone https://github.com/bakkeby/dwm-flexipatch && cp -r ~/arch/dwm-flexipatch ~ && cd ~/dwm-flexipatch && sh script.sh ~/wallpapers/set.jpg && sudo make install clean)
+(cd ~/.shit_from_git && git clone https://github.com/jeffreytse/zsh-vi-mode)
+(cd ~ && git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k)
+(cd ~/.shit_from_git && git clone https://github.com/thytom/dwmbar && cd dwmbar && cp ~/arch/config . && sudo ./install.sh)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+(cd ~/.shit_from_git && git clone https://github.com/zsh-users/zsh-syntax-highlighting)
+(cd ~/.shit_from_git && git clone https://github.com/FT_Labs/picom && cd picom && meson --buildtype=release . build && ninja -C build)
+(cd ~/.shit_from_git && git clone https://github.com/rvaiya/warpd && cd warpd && make PREFIX=/usr && sudo make install PREFIX=/usr)
 if [[ $theme == "Blue, Harry Potter" ]]; then
     sh ./dwm-flexipatch/script.sh ./wallpapers/"Blue, Harry Potter.jpg"
 elif [[ $theme == "Orange, Arch logo" ]]; then
@@ -49,15 +59,6 @@ elif [[ $theme == "My own" ]]; then
 else
     echo "no wallpaper selected"
 fi
-(cd blur-grub2_fullhd/ && sudo sh install.sh)
-(cd ~ && git clone https://github.com/bakkeby/dwm-flexipatch && cp -r ~/arch/dwm-flexipatch ~ && cd ~/dwm-flexipatch && sh script.sh ~/wallpapers/set.jpg && sudo make install clean)
-(cd ~/.shit_from_git && git clone https://github.com/jeffreytse/zsh-vi-mode)
-(cd ~ && git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k)
-(cd ~/.shit_from_git && git clone https://github.com/thytom/dwmbar && cd dwmbar && cp ~/arch/config . && sudo ./install.sh)
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-(cd ~/.shit_from_git && git clone https://github.com/zsh-users/zsh-syntax-highlighting)
-(cd ~/.shit_from_git && git clone https://github.com/FT_Labs/picom && cd picom && meson --buildtype=release . build && ninja -C build)
-(cd ~/.shit_from_git && git clone https://github.com/rvaiya/warpd && cd warpd && make PREFIX=/usr && sudo make install PREFIX=/usr)
 sudo cp -r ./lightdm /etc/lightdm
 sudo cp ./wallpapers/background.jpg /usr/share/background.jpg
 sudo systemctl enable lightdm
