@@ -1,11 +1,16 @@
 #!/bin/bash
-pacman -S gum --noconfirm ; clear
+trap exit_user INT
+exit_user() {
+    echo "exiting.." ; exit 1
+}
 banner () {
     gum style \
         --foreground 212 --border-foreground 212 --border double \
         --align center --width 50 --margin "1 2" --padding "2 4" \
         "$_text"
 }
+
+pacman -S gum --noconfirm ; clear
 _text='Do you have BIOS or UEFI?' && banner
 boot="$(gum choose --limit 1 BIOS UEFI)" ; clear
 lsblk | awk '{print $1, $4}'
@@ -45,7 +50,8 @@ if [ $boot == "BIOS" ]; then
 elif [ $boot == "UEFI" ]; then
     mount --mkdir ${disk}1 /mnt/boot/efi
 else
-    mount --mkdir ${disk}1 /mnt/boot/efi
+
+    exit 1
 fi
 mount --mkdir ${disk}4 /mnt/home
 #Install system

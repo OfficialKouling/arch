@@ -1,6 +1,10 @@
 #!/bin/bash
 #Variables
 username=$(ls /home | awk '/^[^lost+found]/ { print $1 }')
+trap exit_user INT
+exit_user() {
+    echo "exiting.." ; exit 1
+}
 banner () {
     gum style \
         --foreground 212 --border-foreground 212 --border double \
