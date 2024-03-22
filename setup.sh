@@ -1,5 +1,5 @@
 #!/bin/bash
-pacman -S gum --noconfirm && clear
+pacman -S gum --noconfirm ; clear
 banner () {
     gum style \
         --foreground 212 --border-foreground 212 --border double \
@@ -7,24 +7,24 @@ banner () {
         "$_text"
 }
 _text='Do you have BIOS or UEFI?' && banner
-boot="$(gum choose --limit 1 BIOS UEFI)" && clear
+boot="$(gum choose --limit 1 BIOS UEFI)" ; clear
 lsblk | awk '{print $1, $4}'
 _text='Which is your disk? (ex. /dev/sda)' && banner
-disk="$(gum choose --limit 1 /dev/sda /dev/sdb /dev/sdd /dev/nvme0n1p)" && clear
+disk="$(gum choose --limit 1 /dev/sda /dev/sdb /dev/sdd /dev/nvme0n1p)" ; clear
 _text='Give me size of SWAP partition' && banner
-swap_size="$(gum choose --limit 1 8192M 4096M 2048M 1024M)" && clear
+swap_size="$(gum choose --limit 1 8192M 4096M 2048M 1024M)" ; clear
 _text='Give me size of root partition' && banner
-root_size="$(gum choose --limit 1 61440M 40960M 20480M 10240M)" && clear
+root_size="$(gum choose --limit 1 61440M 40960M 20480M 10240M)" ; clear
 _text='Do you want to install linux-zen?' && banner
-zen="$(gum choose --limit 1 Yes No)" && clear
+zen="$(gum choose --limit 1 Yes No)" ; clear
 _text='Write a PC name (ex. server)' && banner
-pc_name=$(gum input --placeholder "PC name") && clear
+pc_name=$(gum input --placeholder "PC name") ; clear
 _text='Write a root password (ex. 1234)' && banner
-root_password=$(gum input --password --placeholder "root password") && clear
+root_password=$(gum input --password --placeholder "root password") ; clear
 _text='Write a username (ex. giovanni_giorgio)' && banner
-username=$(gum input --placeholder "username") && clear
+username=$(gum input --placeholder "username") ; clear
 _text='Write a password for username (ex. qwerty)'
-username_password=$(gum input --password --placeholder "${username} password") && clear
+username_password=$(gum input --password --placeholder "${username} password") ; clear
 #Disk partitioning
 sfdisk ${disk} <<EOF
 2048,525M,b
@@ -71,9 +71,9 @@ echo "127.0.0.1	localhost" > /etc/hosts
 echo "::1	     localhost" >> /etc/hosts
 echo "127.0.0.1	${pc_name}.localdomain	${pc_name}"
 systemctl enable NetworkManager
-chpasswd <<<"root:${root_password}" && clear
+chpasswd <<<"root:${root_password}" ; clear
 useradd ${username}
-chpasswd <<<"${username}:${username_password}" && clear
+chpasswd <<<"${username}:${username_password}" ; clear
 usermod -aG wheel ${username}
 mkdir /home/${username}
 chown ${username}:${username} /home/${username}
