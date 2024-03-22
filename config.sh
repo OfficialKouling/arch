@@ -63,7 +63,7 @@ sudo cp -r ./lightdm /etc/lightdm
 sudo cp ./wallpapers/background.jpg /usr/share/background.jpg
 sudo systemctl enable lightdm
 sudo cp ./lightdm/lightdm.conf /etc/lightdm/lightdm.conf
-cp -r ./rofi/themes/* /usr/share/rofi/themes/
+sudo cp -r ./rofi/themes/* /usr/share/rofi/themes/
 sudo cp -r ./fonts /usr/share/
 cp -r ./kitty/kitty.conf ~/.config/kitty/
 sudo cp ./vim/molokai.vim /usr/share/vim/vim90/colors/
