@@ -25,7 +25,7 @@ theme="$(gum choose --limit 1 "Blue, Harry Potter" "Orange, Arch logo" "Blue, Sk
 _text="Do you have a touchpad?" && banner
 touchpad="$(gum choose --limit 1 Yes No)" && clear
 _text="Which is your videocard?" && banner
-video_card="$(gum choose --limit 1 AMD Intel Nvidia)" && clear
+video_card="$(gum choose --limit 1 AMD Intel Nvidia "No driver")" && clear
 #Script
 sudo mkdir /usr/share/xsessions ~/wallpapers ~/.config ~/.config/neofetch ~/.config/kitty ~/.config/rofi ~/.config/ranger
 sudo chown ${username}:${username} -R /home/${username}
