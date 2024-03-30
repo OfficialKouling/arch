@@ -49,9 +49,6 @@ if [ $boot == "BIOS" ]; then
     mount --mkdir ${disk}1 /mnt/boot
 elif [ $boot == "UEFI" ]; then
     mount --mkdir ${disk}1 /mnt/boot/efi
-else
-
-    exit 1
 fi
 mount --mkdir ${disk}4 /mnt/home
 #Install system
@@ -59,8 +56,6 @@ if [ $zen == "No" ]; then
     pacstrap /mnt base base-devel linux linux-firmware vim git neofetch networkmanager
 elif [ $zen == "Yes" ]; then
     pacstrap /mnt base base-devel linux-zen linux-zen-headers vim git neofetch networkmanager
-else
-    pacstrap /mnt base base-devel linux linux-firmware vim git neofetch networkmanager
 fi
 #Configure system
 genfstab -U /mnt >> /mnt/etc/fstab
