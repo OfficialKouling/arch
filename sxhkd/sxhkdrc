@@ -1,0 +1,34 @@
+# warpd hotkeys
+
+alt + super + x
+  exec warpd --hint
+
+alt + super + c
+  warpd --normal
+
+alt + super + g
+  warpd --grid
+
+# flameshot
+
+Print
+  flameshot gui
+
+# audio controle
+
+ctrl + F1
+  pactl set-sink-mute 0 toggle
+
+ctrl + F2
+  pactl set-sink-volume 0 -3%
+
+ctrl + F3
+  pactl set-sink-volume 0 +3%
+
+# brightness control
+
+ctrl + F4
+  light -U 10
+
+ctrl + F5
+  light -A 10
