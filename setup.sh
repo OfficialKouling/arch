@@ -18,8 +18,12 @@ _text='Which is your disk? (ex. /dev/sda)' && banner
 disk="$(gum choose --limit 1 /dev/sda /dev/sdb /dev/sdd /dev/nvme0n1p)" ; clear
 _text='Give me size of SWAP partition' && banner
 swap_size="$(gum choose --limit 1 8192M 4096M 2048M 1024M)" ; clear
-_text='Give me size of root partition' && banner
-root_size="$(gum choose --limit 1 61440M 40960M 20480M 10240M)" ; clear
+_text='Do you want to make a home partition?' && banner
+make_root="$(gum choose --limit 1 Yes No)" ; clear
+if [ $make_root == "Yes" ]; then
+    _text='Give me size of root partition' && banner
+    root_size="$(gum choose --limit 1 61440M 40960M 20480M 10240M)" ; clear
+fi
 _text='Do you want to install linux-zen?' && banner
 zen="$(gum choose --limit 1 Yes No)" ; clear
 _text='Write a PC name (ex. server)' && banner
@@ -31,12 +35,20 @@ username=$(gum input --placeholder "username") ; clear
 _text='Write a password for username (ex. qwerty)' && banner
 username_password=$(gum input --password --placeholder "${username} password") ; clear
 #Disk partitioning
-sfdisk ${disk} <<EOF
+if [ $make_root == "Yes" ]; then
+    sfdisk ${disk} <<EOF
 2048,525M,b
 ,${swap_size},S
 ,${root_size},L
 ;
 EOF
+elif [ $make_root == "No" ]; then
+    sfdisk ${disk} <<EOF
+2048,525M,b
+,${swap_size},S
+;
+EOF
+fi
 #Create File System
 mkfs.fat -F 32 ${disk}1 &&
 mkswap ${disk}2 &&
