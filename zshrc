@@ -22,7 +22,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 plugins=(
     git
-    archlinux
+    zsh-vi-mode
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
@@ -47,14 +47,11 @@ alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
 
-# Set-up FZF key bindings (CTRL R for fuzzy history finder)
-source <(fzf --zsh)
-
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+source /home/kouling/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme  
 alias ll="lsd -al"
 alias ls="lsd"
 alias cat="bat"
@@ -74,6 +71,4 @@ alias poweroff="sudo systemctl poweroff --force --force"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
 export TERM=kitty
